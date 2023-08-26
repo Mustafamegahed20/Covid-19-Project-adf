@@ -27,57 +27,75 @@ File Name | Description of File
   * PowerBi
 
 # Project Workflow
-  ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/7aa4eb6c-c2a5-47e9-afc0-f7b288866c9c)
+
+  ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/0b5cee77-3a26-40be-8586-41f7352cfa95)
 
 
 # Project Steps 
   1.I manually uploaded the zipped file "population_by_age.tsv.gz" to Azure Blob Storage. Following that, I set up Azure Data Factory, where I established a Linked Service to connect to the Blob Storage and created a DataSet referencing the specific file. In addition to this, I designed a Pipeline that includes a Validation to Check the existing of file and make if condition to check that column count if matches and if it matches make Copy Activity responsible for transferring the Population Data from Blob Storage to ADLS Gen2.
   
-![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/febc2b2d-0d60-4596-ab5e-2ba99f86bd7d)
+![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/9da364d4-56b9-482f-9132-02aa8730454e)
+
 
 
   2.Now I have rest 3 datasets i.e cases_and_deaths, hospial_admissions, testing_data from https://github.com/cloudboxacademy/covid19/tree/main/ecdc_data Now I have to connect these files to the ADF through https: Linked Service and gave my base url name to it.and ingest all these 3 datasets into ADLS gen2 at a time, I created a json file with 3 files and created parameterized dataset and with the help of Lookup acivity and ForEach activity I was able to successfully ingest the data into the ADLS gen2 
   
-![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/c3882f01-1a80-4db4-aa1d-f44a928eab0f)
+![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/54be98e8-d744-4f4b-b87c-89759462a5ee)
+
 
   3.After the required data ingested into the ADLS gen2 storage, I have created the dataFlows for 2  files {cases deaths data , hospital admission } and  Using DataFlow to make transformation and the other two file i make trasnformation using pyspark by using databricks activity and using hive by using HDInsghts . then, I created the pipelines for all of those 4 datasets which redirects to the processed Container in  ADLS gen2 rephrase it 
   # Hospital Transformation 
   
-  ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/347367ef-306e-46c2-96e3-07c0d17d17f1)
+  ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/790f6d20-a48c-4544-8855-bb0815adbd2c)
+
+ 
   # Cases and Deaths Transformation
   
-   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/b1a5bc3f-8339-443f-9fdf-ff63c75eae01)
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/89e88290-c385-41a6-8260-65695f2f9c0b)
+
+   
   # Population Transformation
   
-  ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/dfef0289-1210-4099-9062-bb20fbaa66f9)
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/c4808175-c9e2-4a66-bad1-1b641ecf2643)
+
 
   4.Load All data to azure sql Database By using Copy activity 
   
-   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/52270c83-d1d2-4e51-b8bc-b6dae7db5b4b)
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/bc50d647-b3bf-4336-a0b9-4735a9e45640)
+
+  5.Making Pipeline executions are full automated Using Event triggers and tumbling window triggers
   
-  5.Making Pipeline executions are full automated Using tumbling window triggers
-  
-![1](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/69efbcc5-1d0c-4b42-b22a-636af3fbd46c)
+   ![1](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/e55e37b6-fbb8-42ed-84f8-f575cb2a63bf)
+
 
   6.Monitor Dashboards
-     ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/a04b1049-e580-46c3-b00a-0681a2f9831f)
-
+  
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/00d0f02b-2dd3-4e6f-bac6-bc8178419d83)
+   
   7.Creating DashBoards By connecting PowerBi with azure sql database
    # Page 1 
    
-   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/fe53e703-8c5b-42ce-b99b-1ea47ce72650)
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/da2d5718-ff17-4536-9544-ee86c5387920)
+
    # page 2(tooltip)
    
-   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/06c77ff3-8036-48b8-8d63-3dd9633158c5)
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/34bceded-9812-44f5-b82b-2ac7c2ead0c4)
+
+   
    # Page 3
    
-   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/3de46c6c-5aef-4074-a26c-74aef6b6ac59)
-   # Page 4 
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/ae25954b-ef01-4db6-a5b5-e06f1bb3ed92)
+
    
-   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/724c3176-0518-44af-8614-6fb2331275e6)
+   # Page 4 
+
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/499cfb20-07f2-4672-8560-1718809efebb)
+
+      
    # page 5
    
-   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/cdcd1cf0-9894-405e-a677-9214a2d8bdab)
+   ![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/1dd7aace-cf5c-4130-8e1f-4b5747eb50e8)
+
 
   * Dashboards link :https://www.novypro.com/project/covid-19-dashboard-power-bi
 
