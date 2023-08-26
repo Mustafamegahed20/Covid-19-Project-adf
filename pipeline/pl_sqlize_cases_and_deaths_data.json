@@ -1,0 +1,165 @@
+{
+	"name": "pl_sqlize_cases_and_deaths_data",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy cases and Deaths",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "ecdc/cases_deaths",
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "country",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "country",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "country_code_3_digit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "country_code_3_digit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "country_code_2_digit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "country_code_2_digit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "population",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "population",
+									"type": "Int64",
+									"physicalType": "bigint"
+								}
+							},
+							{
+								"source": {
+									"name": "confirmed cases_counts",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "cases_counts",
+									"type": "Int64",
+									"physicalType": "bigint"
+								}
+							},
+							{
+								"source": {
+									"name": "deaths_counts",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "deaths_counts",
+									"type": "Int64",
+									"physicalType": "bigint"
+								}
+							},
+							{
+								"source": {
+									"name": "source",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "source",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "reported_date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "reported_date",
+									"type": "DateTime",
+									"physicalType": "date"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_processed_cases_and_deaths",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_sql_deaths_and_cases",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "sqlize"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-08-26T12:19:15Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

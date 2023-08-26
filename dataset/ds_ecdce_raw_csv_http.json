@@ -1,0 +1,43 @@
+{
+	"name": "ds_ecdce_raw_csv_http",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_http_opendata_ecdc_eu ropa_eu",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"SourceBaseURL": {
+					"value": "@dataset().BaseUrL",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"RelativeUrL": {
+				"type": "string"
+			},
+			"BaseUrL": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "raw"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().RelativeUrL",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

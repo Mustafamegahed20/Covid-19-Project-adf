@@ -1,0 +1,9 @@
+{
+	"name": "covid19-reprot-adf",
+	"location": "qatarcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c2b89f2b-798c-46b8-81df-02c62eb0a62a",
+		"tenantId": "32c3449d-4d78-4a63-8360-0e35fc6ac39c"
+	}
+}

@@ -1,0 +1,36 @@
+{
+	"name": "ecdce_list_files",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_ablob_covidreportingsa",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "lookup"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ecdc-file-list.json",
+				"container": "config"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"sourceBaseURL": {
+					"type": "string"
+				},
+				"sourceRelativeURL": {
+					"type": "string"
+				},
+				"sinkFileName": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
