@@ -40,7 +40,7 @@ File Name | Description of File
 
   2.Now I have rest 3 datasets i.e cases_and_deaths, hospial_admissions, testing_data from https://github.com/cloudboxacademy/covid19/tree/main/ecdc_data Now I have to connect these files to the ADF through https: Linked Service and gave my base url name to it.and ingest all these 3 datasets into ADLS gen2 at a time, I created a json file with 3 files and created parameterized dataset and with the help of Lookup acivity and ForEach activity I was able to successfully ingest the data into the ADLS gen2 
   
-![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/54be98e8-d744-4f4b-b87c-89759462a5ee)
+![image](https://github.com/Mustafamegahed20/Covid-19-Project-adf/assets/61358936/b80f1b60-a3ef-4201-b383-dc02e27fdf31)
 
 
   3.After the required data ingested into the ADLS gen2 storage, I have created the dataFlows for 2  files {cases deaths data , hospital admission } and  Using DataFlow to make transformation and the other two file i make trasnformation using pyspark by using databricks activity and using hive by using HDInsghts . then, I created the pipelines for all of those 4 datasets which redirects to the processed Container in  ADLS gen2 rephrase it 
